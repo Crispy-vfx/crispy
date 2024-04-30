@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Crispy's SCP</title>
+    <link rel="icon" href="icon.ico" type="image/x-icon">
+    <style>
+        body {
+            margin: 0;
+            padding-top: 50px; /* Add padding to accommodate development bar */
+            font-family: Arial, sans-serif;
+            overflow: hidden; /* Hide overflow content */
+            background: url('background_pattern.png') fixed; /* Add a background pattern */
+        }
+
+        video {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover; /* Cover the entire viewport */
+            z-index: -1; /* Send the video behind other content */
+        }
+
+        /* Overlay */
+        .overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5); /* Semi-transparent black overlay */
+            z-index: 0; /* Place the overlay behind other content */
+        }
+
+        .container {
+            max-width: 600px;
+            margin: 20px auto;
+            text-align: center;
+            color: #ffffff;
+            position: relative; /* Position relative to allow z-index */
+            z-index: 1; /* Ensure the content is above the overlay */
+        }
+
+        h2 {
+            margin-bottom: 20px;
+        }
+
+        .button-container {
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+
+        .cool-button, .tiktok-button, .youtube-button {
+            margin: 10px;
+            padding: 10px 20px; /* Adjusted padding */
+            font-size: 16px; /* Adjusted font size */
+            color: #ffffff;
+            text-transform: uppercase;
+            background-color: #000000; /* Black color */
+            border: none;
+            border-radius: 25px; /* Round button shape */
+            cursor: pointer;
+            text-decoration: none;
+            transition: background-color 0.3s, transform 0.2s;
+            display: inline-block; /* Ensure the button behaves like other buttons */
+        }
+
+        .cool-button:hover, .tiktok-button:hover, .youtube-button:hover {
+            background-color: #333333; /* Darker shade of black on hover */
+            transform: scale(1.1); /* Scale up slightly on hover */
+        }
+
+        /* Development bar */
+        .development-bar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: #ff4d4d; /* Red color */
+            color: #ffffff; /* White text color */
+            padding: 10px 0;
+            text-align: center;
+            z-index: 1000; /* Ensure it's above other content */
+            font-size: 18px; /* Increased font size */
+            font-weight: bold; /* Bold text */
+            text-transform: uppercase; /* Uppercase text */
+            letter-spacing: 2px; /* Increased letter spacing */
+            box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+        }
+
+        /* Copyright watermark */
+        .copyright {
+            position: fixed;
+            bottom: 10px;
+            left: 50%;
+            transform: translateX(-50%);
+            color: rgba(255, 255, 255, 0.5);
+            font-size: 14px;
+        }
+
+        /* Popup styling */
+        .popup {
+            display: none;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background-color: #000000;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.5);
+            z-index: 1000;
+        }
+
+        .popup p {
+            color: #fff;
+            font-size: 16px;
+            margin-bottom: 20px;
+        }
+
+        .popup-button {
+            padding: 10px 20px;
+            font-size: 16px;
+            color: #fff;
+            background-color: #007bff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s, transform 0.2s ease; /* Add transition for background color and transform */
+        }
+
+        .popup-button:hover {
+            background-color: #0056b3;
+            transform: scale(1.05); /* Scale up by 5% on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="development-bar">This website is still in development</div> <!-- Development bar -->
+
+    <video src="backgroundvideo.mp4" autoplay muted loop></video>
+    <div class="overlay"></div> <!-- Overlay div -->
+
+    <div class="container">
+        <h2>Flow Framed Clips:</h2>
+        <div class="button-container">
+            <!-- Open links in new tab -->
+            <a href="anime_flowframed.html" class="cool-button" target="_blank">Anime</a>
+            <a href="tv_shows_flowframed.html" class="cool-button" target="_blank">TV Shows</a>
+            <!-- Open "Movies" link in a new tab -->
+            <a href="moives_flowframed.html" class="cool-button" target="_blank">Movies</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Full Movies:</h2>
+        <div class="button-container">
+            <!-- Open link in a new tab and show popup -->
+            <a href="#" class="cool-button" onclick="showPopup()">Movies</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Tv Shows:</h2>
+        <div class="button-container">
+            <!-- Open link in new tab -->
+            <a href="tv_shows.html" class="cool-button" target="_blank">Tv Shows</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Get Support:</h2>
+        <div class="button-container">
+            <!-- Open links in new tab -->
+            <a href="request.html" class="cool-button" target="_blank">Request</a>
+            <a href="https://discord.gg/qg8CfwqWka" class="cool-button" target="_blank">Contact Me</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Find Me on Social Media:</h2>
+        <div class="button-container">
+            <!-- Open link in new tab -->
+            <a href="https://www.tiktok.com/@crispyy.vfx" class="cool-button" target="_blank">TikTok</a>
+        </div>
+    </div>
+
+    <div class="container">
+        <h2>Buy My Content:</h2>
+        <div class="button-container">
+            <!-- Open link in new tab -->
+            <a href="https://payhip.com/crispyvfx" class="cool-button" target="_blank">Payhip</a>
+        </div>
+    </div>
+    
+    <!-- Copyright watermark -->
+    <div class="copyright">
+        &copy; 2024 Crispy
+    </div>
+
+    <!-- Popup -->
+    <div id="popup" class="popup">
+        <p>I DID NOT MAKE ALL OF THE SCP IN THIS CATEGORY</p>
+        <!-- "I Understand" button -->
+        <button class="popup-button" onclick="hidePopup()">I Understand</button>
+    </div>
+
+    <!-- JavaScript -->
+    <script>
+        // Function to show the popup
+        function showPopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "block";
+        }
+
+        // Function to hide the popup and open full_movies.html in a new tab
+        function hidePopup() {
+            var popup = document.getElementById("popup");
+            popup.style.display = "none";
+            // Open full_movies.html in a new tab
+            window.open("full_movies.html", "_blank");
+        }
+    </script>
+</body>
+</html>

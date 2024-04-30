@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Crispy's Request</title>
+<link rel="icon" href="icon.ico" type="image/x-icon">
+<style>
+    body {
+        margin: 0;
+        padding: 0;
+        font-family: Arial, sans-serif;
+        overflow: hidden; /* Hide overflow content */
+        background: #222; /* Dark background */
+    }
+
+    video {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover; /* Cover the entire viewport */
+        z-index: -1; /* Send the video behind other content */
+    }
+
+    /* Button container */
+    .button-container {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .button {
+        margin: 10px;
+        padding: 15px 30px; /* Increased padding */
+        font-size: 18px; /* Increased font size */
+        color: #fff;
+        text-transform: uppercase;
+        background-color: #000; /* Black button */
+        border: 2px solid #000; /* Black border */
+        border-radius: 25px; /* Rounded border */
+        cursor: pointer;
+        transition: background-color 0.3s, border-color 0.3s;
+    }
+
+    .button:hover {
+        background-color: #222; /* Darker background color on hover */
+        border-color: #222; /* Darker border color on hover */
+    }
+
+    /* Header */
+    .header {
+        position: absolute;
+        top: 20%;
+        left: 50%;
+        transform: translateX(-50%);
+        color: #fff;
+        font-size: 36px; /* Increased font size */
+        font-weight: bold; /* Bold font weight */
+        text-align: center;
+        text-transform: uppercase; /* Uppercase text */
+    }
+
+    /* Copyright watermark */
+    .copyright {
+        position: fixed;
+        bottom: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        color: rgba(255, 255, 255, 0.5);
+        font-size: 14px;
+    }
+</style>
+</head>
+<body>
+    <video src="backgroundvideo.mp4" autoplay muted loop></video>
+    <div class="overlay"></div> <!-- Overlay div -->
+
+    <div class="header">What would you like to request?</div> <!-- Header -->
+
+    <div class="button-container">
+        <button class="button" onclick="redirectTo('anime_flow_framed')">Anime Flow Framed</button>
+        <button class="button" onclick="redirectTo('movie_clips_flow_framed')">Movie Clips Flow Framed</button>
+        <button class="button" onclick="redirectTo('tv_shows_flow_framed')">TV Shows Flow Framed</button>
+        <button class="button" onclick="redirectTo('anime_episode_clips')">Anime Episode Clips</button>
+        <button class="button" onclick="redirectTo('full_movies')">Full Movies</button>
+        <button class="button" onclick="redirectTo('tv_shows')">TV Shows</button>
+    </div>
+
+    <!-- Copyright watermark -->
+    <div class="copyright">
+        &copy; 2024 Crispy
+    </div>
+
+    <script>
+        function redirectTo(category) {
+            switch (category) {
+                case 'anime_flow_framed':
+                    window.open('anime_flowframed_request.html', '_blank');
+                    break;
+                case 'movie_clips_flow_framed':
+                    window.open('movie_flowframed_request.html', '_blank');
+                    break;
+                case 'tv_shows_flow_framed':
+                    window.open('tv_shows_flowframed_request.html', '_blank');
+                    break;
+                case 'anime_episode_clips':
+                    window.open('anime_episode_clips_request.html', '_blank');
+                    break;
+                case 'full_movies':
+                    window.open('full_movie_request.html', '_blank');
+                    break;
+                case 'tv_shows':
+                    window.open('tv_shows_request.html', '_blank');
+                    break;
+                default:
+                    break;
+            }
+        }
+    </script>
+</body>
+</html>
