@@ -99,22 +99,22 @@
         font-size: 14px;
     }
 
-/* Development bar */
-            .development-bar {
-                position: fixed;
-                top: 0;
-                left: 0;
-                width: 100%;
-                background-color: #ff4d4d; /* Red color */
-                color: #ffffff; /* White text color */
-                padding: 10px 0;
-                text-align: center;
-                z-index: 1000; /* Ensure it's above other content */
-                font-size: 18px; /* Increased font size */
-                font-weight: bold; /* Bold text */
-                text-transform: uppercase; /* Uppercase text */
-                letter-spacing: 2px; /* Increased letter spacing */
-                box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
+    /* Development bar */
+    .development-bar {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        background-color: #ff4d4d; /* Red color */
+        color: #ffffff; /* White text color */
+        padding: 10px 0;
+        text-align: center;
+        z-index: 1000; /* Ensure it's above other content */
+        font-size: 18px; /* Increased font size */
+        font-weight: bold; /* Bold text */
+        text-transform: uppercase; /* Uppercase text */
+        letter-spacing: 2px; /* Increased letter spacing */
+        box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Add shadow for depth */
     }
 </style>
 </head>
@@ -132,12 +132,7 @@
     <div class="container">
         <input type="text" class="search-box" id="searchInput" oninput="filterList()" placeholder="Search...">
         <button class="sort-btn" onclick="sortAZ()">Sort A-Z</button>
-        <div id="listContainer">
-            <div class="list-item">
-                <a href="https://drive.google.com/drive/folders/1RvDt32V5XQpZhBQE_iyyoUCwbTr3JM6M?usp=drive_link">Jujutsu Kaisen</a>
-            </div>
-            <!-- Remaining list items -->
-        </div>
+        <div id="listContainer"></div>
     </div>
 
     <script>
@@ -145,19 +140,19 @@
         var originalList = [
             { name: "Jujutsu Kaisen", link: "https://mega.nz/folder/hHFmFKrT#_0g8oproRtZgfRTvfma_ZA" },
             { name: "Demon Slayer", link: "https://mega.nz/folder/MOlBlZgL#h-6ZwlBxxdI8Q_VzLgHQIA" },
-            { name: "Attack on Titan", link: "" },
+            { name: "Attack on Titan", link: "https://mega.nz/folder/hKkzDaDZ#Kt2Yhg7QmmOtxeM2BzIruA" },
             { name: "Solo Leveling", link: "https://mega.nz/folder/Ee03VYDZ#qHmc7Cd9I9TFvD_a70Ag5w" },
-            { name: "My Hero Academia", link: "" },
+            { name: "My Hero Academia", link: "https://mega.nz/folder/dS8HWQ6J#v-Lp0BDAV_T4kqyQFhFVZA" },
             { name: "Berserk", link: "https://mega.nz/folder/NGs3zaQB#rgupTIDnqagyFk1s0s88eg" },
-            { name: "Black Clover", link: "" },
-            { name: "One Piece", link: "" },
-            { name: "Dr. Stone", link: "" },
+            { name: "Black Clover", link: "https://mega.nz/folder/pbc0zZ4C#9BsCTqN0QWFUdFcE6c3wsQ" },
+            { name: "One Piece", link: "https://mega.nz/folder/geMwVIpJ#K_l7Ef7anW3p--8JjL3xzQ" },
+            { name: "Dr. Stone", link: "https://mega.nz/folder/sPUHHAKT#twk7MtPZKLgnzF7WJGjXmQ" },
             { name: "Jojo's bizzare adventures", link: "https://mega.nz/folder/tXMxlT5a#dE6k0WLqDBv-sAsbYnbdDQ" },
-            { name: "Haikyu!!", link: "" },
-            { name: "The Rising of the Shield Hero", link: "" },
+            { name: "Haikyu!!", link: "https://mega.nz/folder/RWlXHaiB#CFwzUu7OQy1e1fcoC0T_6g" },
+            { name: "The Rising of the Shield Hero", link: "https://mega.nz/folder/VD121JxC#689qAKhQAewzDFwgMm5qGw" },
             { name: "Chainsaw Man", link: "https://mega.nz/folder/QDlR2DbS#1iquaadbXfxAzO3Ty5g8Ng" },
-            { name: "A Silent Voice", link: "" },
-            { name: "The Seven Deadly Sins", link: "" }
+            { name: "A Silent Voice", link: "https://mega.nz/folder/oDEmHSoK#m3mDdJncLtbV92A_18exOQ" },
+            { name: "The Seven Deadly Sins", link: "https://mega.nz/folder/sGM00aaL#lbS43XQjRr7HhlTSu7nU-A" }
         ];
 
         // Function to render list
@@ -169,11 +164,17 @@
                 var listItem = document.createElement("div");
                 listItem.classList.add("list-item");
 
-                var link = document.createElement("a");
-                link.href = item.link; // Add the link from the data object
-                link.textContent = item.name; // Change text content accordingly
+                if (item.link) {
+                    var link = document.createElement("a");
+                    link.href = item.link; // Add the link from the data object
+                    link.textContent = item.name; // Change text content accordingly
+                    link.target = "_blank"; // Open link in a new tab
 
-                listItem.appendChild(link);
+                    listItem.appendChild(link);
+                } else {
+                    listItem.textContent = item.name; // Show name without link
+                }
+
                 listContainer.appendChild(listItem);
             });
         }
@@ -218,7 +219,7 @@
 
             for (i = 0; i < li.length; i++) {
                 a = li[i].getElementsByTagName("a")[0];
-                txtValue = a.textContent || a.innerText;
+                txtValue = a ? (a.textContent || a.innerText) : li[i].textContent;
                 if (txtValue.toUpperCase().indexOf(filter) > -1) {
                     matchedItems.push(li[i]); // Add matched item to the array
                 } else {
